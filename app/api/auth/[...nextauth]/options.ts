@@ -14,7 +14,7 @@ export const options: NextAuthOptions = {
             async authorize(credentials, req) {
                 const user = { id: '1', name: "test", password: "test", email: "example@gmail.com"};
             
-                if (user.password === credentials?.password && credentials?.username === user.name) {
+                if (user.password === credentials?.password && (credentials?.username === user.name || credentials?.username === user.email) ) {
                     return Promise.resolve(user);
                 } else {
                     return Promise.resolve(null);
